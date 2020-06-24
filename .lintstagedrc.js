@@ -16,9 +16,11 @@ module.exports = {
         'eslint --no-error-on-unmatched-pattern'
     ],
     './src/**/*.css': [
+        'prettier --config ./.prettierrc.json --check',
         'stylelint --fix'
     ],
     './src/**/*.less': [
+        'prettier --config ./.prettierrc.json --check',
         'stylelint --fix --syntax less'
     ]
 };
