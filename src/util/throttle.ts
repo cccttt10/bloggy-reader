@@ -1,21 +1,24 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/ban-types */
+
 /**
- * return a throttled function
  * @param {Function} fn - the event that we want to throttle, as a callback function
  * @param {number} delay - throttle time interval, in ms
+ * @return a throttled function
  */
-function throttle(fn, delay) {
+function throttle(fn: Function, delay: number): Function {
     // last为上一次触发回调的时间
     let last = 0;
-    let timer = null;
+    let timer: ReturnType<typeof setTimeout>;
 
     // return the throttled function
     return function () {
         // 保留调用时的this上下文
-        let context = this;
+        const context = this;
         // 保留调用时传入的参数
-        let args = arguments;
+        const args = arguments;
         // 记录本次触发回调的时间
-        let now = +new Date();
+        const now = +new Date();
 
         // 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值
         if (now - last < delay) {

@@ -35,6 +35,7 @@ module.exports = {
             'varsIgnorePattern': 'React'
         }],
         'no-var': 'error',
+        'prefer-rest-params': 'off',
         'react/boolean-prop-naming': 'error',
         'react/jsx-key': 'error',
         'react/no-children-prop': 'off',
