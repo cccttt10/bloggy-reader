@@ -54,6 +54,7 @@
         "lint-staged": "^10.2.11",
         "prettier": "^2.0.5",
         "react-app-rewired": "^2.1.5",
+        "react-loadable": "^5.5.0",
         "stylelint": "^13.6.1",
         "stylelint-config-recommended": "^3.0.0",
         "typescript": "^3.9.5"
