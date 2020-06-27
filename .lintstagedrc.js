@@ -22,5 +22,9 @@ module.exports = {
     './src/**/*.less': [
         'prettier --config ./.prettierrc.json --check',
         'stylelint --fix --syntax less'
+    ],
+    './src/**/*.scss': [
+        'prettier --config ./.prettierrc.json --check',
+        'stylelint --fix --syntax scss'
     ]
 };

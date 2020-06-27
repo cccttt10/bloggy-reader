@@ -76,10 +76,10 @@
         "eslint-check": "eslint --no-error-on-unmatched-pattern \"src/**/*.{ts,tsx,js,jsx}\"",
         "eslint-fix": "eslint --no-error-on-unmatched-pattern \"src/**/*.{ts,tsx,js,jsx}\" --fix",
         "fix": "npm run stylelint && npm run prettier-fix && npm run eslint-fix",
-        "prettier-check": "prettier --config ./.prettierrc.json --check \"./src/**/*.{ts,tsx,js,jsx,css,less}\"",
-        "prettier-fix": "prettier --config ./.prettierrc.json --write \"./src/**/*.{ts,tsx,js,jsx,css,less}\"",
+        "prettier-check": "prettier --config ./.prettierrc.json --check \"./src/**/*.{ts,tsx,js,jsx,css,less,scss}\"",
+        "prettier-fix": "prettier --config ./.prettierrc.json --write \"./src/**/*.{ts,tsx,js,jsx,css,less,scss}\"",
         "start": "react-app-rewired start",
-        "stylelint": "stylelint --fix \"./src/**/*.css\" && stylelint --fix \"./src/**/*.less\" --syntax less",
+        "stylelint": "stylelint --fix \"./src/**/*.css\" && stylelint --fix \"./src/**/*.less\" --syntax less && stylelint --fix \"./src/**/*.scss\" --syntax scss",
         "tsc-check": "tsc --noEmit"
     },
     "version": "0.1.0"
