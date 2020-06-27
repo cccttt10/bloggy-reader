@@ -44,7 +44,9 @@ module.exports = {
         'react/prefer-stateless-function': 'error',
         'react/prop-types': 'off',
         'require-await': 'error',
-        'simple-import-sort/sort': 'error'
+        'simple-import-sort/sort': 'error',
+        'react/display-name': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off'
     },
     'settings': {
         'react': {

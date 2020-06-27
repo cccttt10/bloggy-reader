@@ -35,7 +35,7 @@ const App: React.FC<AppProps> = props => {
                     <LoadingLayout>
                         {routers.map((r, key) => (
                             <Route
-                                component={r.component}
+                                render={r.render}
                                 exact={r.exact}
                                 key={key}
                                 path={r.path}
