@@ -17,14 +17,14 @@ module.exports = {
     ],
     './src/**/*.css': [
         'prettier --config ./.prettierrc.json --check',
-        'stylelint --fix'
+        'stylelint --fix --allow-empty-input'
     ],
     './src/**/*.less': [
         'prettier --config ./.prettierrc.json --check',
-        'stylelint --fix --syntax less'
+        'stylelint --fix --allow-empty-input --syntax less'
     ],
     './src/**/*.scss': [
         'prettier --config ./.prettierrc.json --check',
-        'stylelint --fix --syntax scss'
+        'stylelint --fix --allow-empty-input --syntax scss'
     ]
 };

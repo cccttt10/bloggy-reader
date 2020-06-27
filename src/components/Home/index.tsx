@@ -1,5 +1,6 @@
-import './index.scss';
+import './index.less';
 
+import { Button } from 'antd';
 import { IUser, RouteParams } from 'global';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -85,7 +86,9 @@ class Index extends Component<IndexProps, IndexState> {
                     <div className="home-body">
                         <div className="list">
                             <Link className="link" to={`${currentUrl}/articles`}>
-                                文章
+                                <Button icon="read" type="primary">
+                                    文章
+                                </Button>
                             </Link>
 
                             <a
@@ -94,7 +97,9 @@ class Index extends Component<IndexProps, IndexState> {
                                 className="link"
                                 href={`https://github.com/chuntonggao`}
                             >
-                                GitHub
+                                <Button icon="github" type="primary">
+                                    GitHub
+                                </Button>
                             </a>
                         </div>
                         <div className="introduce"> {this.props.publisher.bio} </div>
