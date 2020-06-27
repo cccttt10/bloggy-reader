@@ -5,9 +5,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import { configureStore, history } from './redux';
-
-const store = configureStore();
+import { history, store } from './redux';
 
 const render = () => {
     ReactDOM.render(

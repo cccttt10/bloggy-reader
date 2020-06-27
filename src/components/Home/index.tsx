@@ -9,7 +9,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import { RootState } from '../../redux';
 import { savePublisher } from '../../redux/user/actions';
-import { endpoints, service } from '../../util/service';
+import { getUser, GetUserResponseBody } from '../../service/user';
 import Loading from '../Loading';
 import animate from './animation';
 
@@ -25,10 +25,12 @@ const mapDispatchToProps = {
 
 interface StateProps {
     publisher: IUser;
+    loading: boolean;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
     publisher: state.user.publisher as IUser,
+    loading: state.loading.loading,
 });
 
 type IndexProps = OwnProps &
@@ -36,31 +38,26 @@ type IndexProps = OwnProps &
     StateProps &
     RouteComponentProps<RouteParams>;
 
-interface IndexState {
-    loading: boolean;
-}
-
-class Index extends Component<IndexProps, IndexState> {
-    state = { loading: true };
-
+class Index extends Component<IndexProps> {
     componentDidMount(): void {
-        this.getPublisherInfo();
+        if (!this.props.publisher) {
+            this.getPublisherInfo();
+        }
         animate();
     }
 
     getPublisherInfo = async (): Promise<void> => {
-        this.setState({ loading: true });
         const publisherId = this.props.match.params.publisherId;
-        const response = await service.post(endpoints.GET_USER, {
-            _id: publisherId,
-        });
-        const publisherInfo: IUser = response.data.user;
-        this.setState({ loading: false });
-        this.props.savePublisher(publisherInfo);
+        const response = await getUser({ _id: publisherId });
+        if (response.data) {
+            const responseBody: GetUserResponseBody = response.data;
+            const publisherInfo: IUser = responseBody.user;
+            this.props.savePublisher(publisherInfo);
+        }
     };
 
     render(): JSX.Element {
-        if (this.state.loading === true || !this.props.publisher) {
+        if (this.props.loading === true || !this.props.publisher) {
             return (
                 <div className="home">
                     {' '}

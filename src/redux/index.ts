@@ -21,10 +21,11 @@ const rootReducer = createRootReducer(history);
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-export const configureStore = () => {
+const configureStore = () => {
     const middlewares: Middleware[] = [routerMiddleware(history)];
     const middleWareEnhancer = applyMiddleware(...middlewares);
     const store = createStore(rootReducer, composeWithDevTools(middleWareEnhancer));
-
     return store;
 };
+
+export const store = configureStore();
