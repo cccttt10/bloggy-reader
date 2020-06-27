@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 
-const service = axios.create({
+export const service = axios.create({
     baseURL: process.env.API_URL,
     timeout: 50000,
 });
@@ -26,4 +26,10 @@ service.interceptors.response.use(
     }
 );
 
-export default service;
+const baseUrl = process.env.REACT_APP_API_URL;
+console.log(process.env.NODE_ENV);
+console.log(baseUrl);
+
+export const endpoints = {
+    GET_USER: `${baseUrl}/getUser`,
+};
