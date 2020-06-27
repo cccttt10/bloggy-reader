@@ -1,4 +1,5 @@
-import { Avatar } from 'antd';
+import './index.scss';
+
 import { IUser, RouteParams } from 'global';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -10,7 +11,6 @@ import { savePublisher } from '../../redux/user/actions';
 import { endpoints, service } from '../../util/service';
 import Loading from '../Loading';
 import animate from './animation';
-import styles from './index.less';
 
 interface OwnProps {}
 
@@ -59,27 +59,25 @@ class Index extends Component<IndexProps, IndexState> {
     };
 
     render(): JSX.Element {
-        console.log(this.state.loading);
-        console.log(this.props.publisher);
-        console.log(this.state.loading === true || !this.props.publisher);
         if (this.state.loading === true || !this.props.publisher) {
             return (
-                <div className="home" style={styles}>
+                <div className="home">
+                    {' '}
                     <canvas id="sakura" />
                     <Loading />
                 </div>
             );
         }
         const currentUrl = this.props.match.url;
-        // console.log(styles)
         return (
-            <div className={styles.home}>
-                {/* <canvas id="sakura" /> */}
-                <div className={styles.content}>
-                    <div className={styles['home-header']}>
+            <div className="home">
+                {' '}
+                <canvas id="sakura" />
+                <div className="content">
+                    <div className="home-header">
                         <Link className="link" to={`${currentUrl}/home`}>
-                            <Avatar
-                                className={'home-logo'}
+                            <img
+                                className="avatar"
                                 src={this.props.publisher.avatar}
                             />
                         </Link>
