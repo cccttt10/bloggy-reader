@@ -1,3 +1,5 @@
+import cookieChecker from 'js-cookie';
+
 import {
     SavePublisherAction,
     SaveReaderAction,
@@ -13,6 +15,12 @@ const initialState: UserState = {
 
 export default (state: UserState = initialState, action: UserAction): UserState => {
     switch (action.type) {
+        case userActionTypes.LOGOUT_READER:
+            cookieChecker.remove('jwt');
+            return {
+                ...state,
+                reader: undefined,
+            };
         case userActionTypes.SAVE_READER:
             return {
                 ...state,

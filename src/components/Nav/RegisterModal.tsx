@@ -12,7 +12,7 @@ import {
 } from '../../service/user';
 
 interface OwnProps {
-    handleCancel: () => void;
+    setShowRegister: (showRegister: boolean) => void;
 }
 
 interface DispatchProps {
@@ -97,7 +97,7 @@ class Register extends Component<RegisterProps, RegisterState> {
                 title="Register"
                 style={{ top: '18%' }}
                 visible={true}
-                onCancel={this.props.handleCancel}
+                onCancel={(): void => this.props.setShowRegister(false)}
                 width={500}
                 footer={null}
             >

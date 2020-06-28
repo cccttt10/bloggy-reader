@@ -6,9 +6,14 @@ export interface UserState {
 }
 
 export const userActionTypes = {
+    LOGOUT_READER: 'LOGOUT_READER',
     SAVE_READER: 'SAVE_READER',
     SAVE_PUBLISHER: 'SAVE_PUBLISHER',
 };
+
+export interface LogoutReaderAction {
+    type: typeof userActionTypes.LOGOUT_READER;
+}
 
 export interface SaveReaderAction {
     type: typeof userActionTypes.SAVE_READER;
@@ -24,4 +29,4 @@ export interface SavePublisherAction {
     };
 }
 
-export type UserAction = SaveReaderAction | SavePublisherAction;
+export type UserAction = LogoutReaderAction | SaveReaderAction | SavePublisherAction;

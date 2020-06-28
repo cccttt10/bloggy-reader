@@ -1,7 +1,7 @@
 import './index.less';
 
 import { Button } from 'antd';
-import { IUser, RouteParams } from 'global';
+import { IUser } from 'global';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,8 +9,8 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import { RootState } from '../../redux';
 import { savePublisher } from '../../redux/user/actions';
+import { RouteParams } from '../../router/constants';
 import { getUser, GetUserResponseBody } from '../../service/user';
-import Loading from '../Loading';
 import animate from './animation';
 
 interface OwnProps {}
@@ -25,12 +25,10 @@ const mapDispatchToProps = {
 
 interface StateProps {
     publisher: IUser;
-    loading: boolean;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
     publisher: state.user.publisher as IUser,
-    loading: state.loading.loading,
 });
 
 type IndexProps = OwnProps &
@@ -38,12 +36,26 @@ type IndexProps = OwnProps &
     StateProps &
     RouteComponentProps<RouteParams>;
 
-class Index extends Component<IndexProps> {
-    componentDidMount(): void {
+interface IndexState {
+    ready: boolean;
+}
+
+class Index extends Component<IndexProps, IndexState> {
+    state = { ready: false };
+
+    // eslint-disable-next-line react/no-deprecated
+    componentWillMount(): void {
         if (!this.props.publisher) {
             this.getPublisherInfo();
+        } else {
+            this.setState({ ready: true });
         }
-        animate();
+    }
+
+    componentDidMount(): void {
+        if (this.state.ready === true) {
+            animate();
+        }
     }
 
     getPublisherInfo = async (): Promise<void> => {
@@ -57,16 +69,11 @@ class Index extends Component<IndexProps> {
     };
 
     render(): JSX.Element {
-        if (this.props.loading === true || !this.props.publisher) {
-            return (
-                <div className="home">
-                    {' '}
-                    <canvas id="sakura" />
-                    <Loading />
-                </div>
-            );
+        if (this.state.ready === false) {
+            return <span />;
         }
         const currentUrl = this.props.match.url;
+        console.log(currentUrl);
         return (
             <div className="home">
                 {' '}

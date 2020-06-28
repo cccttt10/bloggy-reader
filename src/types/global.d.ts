@@ -55,10 +55,5 @@ declare module 'global' {
         updatedOn?: Date;
     }
 
-    export interface RouteParams {
-        publisherId: string;
-        page: 'articleList' | 'articleDetail';
-    }
-
     export type KeysEnum<T> = { [P in keyof Required<T>]: true };
 }

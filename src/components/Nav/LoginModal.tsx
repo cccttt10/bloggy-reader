@@ -8,7 +8,7 @@ import { saveReader } from '../../redux/user/actions';
 import { login, LoginRequestBody, LoginResponseBody } from '../../service/user';
 
 interface OwnProps {
-    handleCancel: () => void;
+    setShowLogin: (showLogin: boolean) => void;
 }
 
 interface DispatchProps {
@@ -76,7 +76,7 @@ class Login extends Component<LoginProps, LoginState> {
                 title="Login"
                 style={{ top: '25%' }}
                 visible={true}
-                onCancel={this.props.handleCancel}
+                onCancel={(): void => this.props.setShowLogin(false)}
                 width={400}
                 footer={null}
             >

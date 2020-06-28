@@ -1,20 +1,19 @@
-import { RouteParams } from 'global';
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import Home from '../components/Home/';
-import constants from './constants';
+import { paths, RouteParams } from './constants';
 
 const routers = [
     {
-        path: `/${constants.PUBLISHER}/:${constants.PUBLISHER_ID}`,
+        path: `/${paths.PUBLISHER}/:${paths.PUBLISHER_ID}`,
         exact: true,
         render: (routeProps: RouteComponentProps<RouteParams>): JSX.Element => {
             return <Home {...routeProps} />;
         },
     },
     {
-        path: `/${constants.PUBLISHER}/:${constants.PUBLISHER_ID}/:${constants.PAGE}`,
+        path: `/${paths.PUBLISHER}/:${paths.PUBLISHER_ID}/:${paths.PAGE}`,
         exact: true,
         render: (routeProps: RouteComponentProps<RouteParams>): JSX.Element => {
             return <Home {...routeProps} />;

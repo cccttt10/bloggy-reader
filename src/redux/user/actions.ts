@@ -1,6 +1,17 @@
 import { IUser } from 'global';
 
-import { SavePublisherAction, SaveReaderAction, userActionTypes } from './types';
+import {
+    LogoutReaderAction,
+    SavePublisherAction,
+    SaveReaderAction,
+    userActionTypes,
+} from './types';
+
+export const logoutReader = (): LogoutReaderAction => {
+    return {
+        type: userActionTypes.LOGOUT_READER,
+    };
+};
 
 export const saveReader = (reader: IUser): SaveReaderAction => {
     return {
