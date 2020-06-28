@@ -2,6 +2,10 @@
 
 This repo contains the front-end code for Bloggy's reader UI.
 
+- [Project Overview](https://github.com/chuntonggao/bloggy.git)
+- [Back-end repo](https://github.com/chuntonggao/bloggy-server.git) 
+- [Front-end repo for publisher view](https://github.com/chuntonggao/bloggy-publisher.git)
+
 ## CLI
 
 - `npm install`: Install dependencies.
