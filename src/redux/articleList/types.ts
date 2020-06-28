@@ -1,7 +1,7 @@
 import { IArticle } from 'global';
 
 export interface ArticleListState {
-    articles: IArticle[];
+    articles: IArticle[] | undefined;
 }
 
 export const articleListActionTypes = {

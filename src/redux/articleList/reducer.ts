@@ -5,7 +5,7 @@ import {
 } from './types';
 
 const initialState: ArticleListState = {
-    articles: [],
+    articles: undefined,
 };
 
 export default (
@@ -14,6 +14,9 @@ export default (
 ): ArticleListState => {
     switch (action.type) {
         case articleListActionTypes.SAVE_ARTICLE_LIST:
+            if (state.articles === undefined) {
+                return { ...state, articles: action.payload.articles };
+            }
             return {
                 ...state,
                 articles: [...state.articles, ...action.payload.articles],

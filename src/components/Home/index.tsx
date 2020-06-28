@@ -10,7 +10,6 @@ import { RouteComponentProps } from 'react-router-dom';
 import { RootState } from '../../redux';
 import { savePublisher } from '../../redux/user/actions';
 import { RouteParams } from '../../router/constants';
-import { getUser, GetUserResponseBody } from '../../service/user';
 import animate from './animation';
 
 interface OwnProps {}
@@ -36,44 +35,14 @@ type IndexProps = OwnProps &
     StateProps &
     RouteComponentProps<RouteParams>;
 
-interface IndexState {
-    ready: boolean;
-}
-
-class Index extends Component<IndexProps, IndexState> {
-    state = { ready: false };
-
-    // eslint-disable-next-line react/no-deprecated
-    componentWillMount(): void {
-        if (!this.props.publisher) {
-            this.getPublisherInfo();
-        } else {
-            this.setState({ ready: true });
-        }
-    }
-
+class Index extends Component<IndexProps> {
     componentDidMount(): void {
-        if (this.state.ready === true) {
-            animate();
-        }
+        animate();
     }
-
-    getPublisherInfo = async (): Promise<void> => {
-        const publisherId = this.props.match.params.publisherId;
-        const response = await getUser({ _id: publisherId });
-        if (response.data) {
-            const responseBody: GetUserResponseBody = response.data;
-            const publisherInfo: IUser = responseBody.user;
-            this.props.savePublisher(publisherInfo);
-        }
-    };
 
     render(): JSX.Element {
-        if (this.state.ready === false) {
-            return <span />;
-        }
         const currentUrl = this.props.match.url;
-        console.log(currentUrl);
+
         return (
             <div className="home">
                 {' '}
@@ -94,7 +63,6 @@ class Index extends Component<IndexProps, IndexState> {
                                     文章
                                 </Button>
                             </Link>
-
                             <a
                                 target="_blank"
                                 rel="noopener noreferrer"

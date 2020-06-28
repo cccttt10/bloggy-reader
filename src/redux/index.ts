@@ -4,6 +4,7 @@ import { applyMiddleware, combineReducers, createStore, Middleware } from 'redux
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import articleListReducer from './articleList/reducer';
+import categoryListReducer from './categoryList/reducer';
 import loadingReducer from './loading/reducer';
 import userReducer from './user/reducer';
 
@@ -12,6 +13,7 @@ export const history = createBrowserHistory();
 const createRootReducer = (history: ReturnType<typeof createBrowserHistory>) =>
     combineReducers({
         articleList: articleListReducer,
+        categoryList: categoryListReducer,
         loading: loadingReducer,
         user: userReducer,
         router: connectRouter(history),
