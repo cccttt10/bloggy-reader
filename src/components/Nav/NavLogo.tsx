@@ -5,13 +5,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface NavLogoProps {
-    publisher: IUser | undefined;
+    publisher: IUser;
 }
 
 const NavLogo: React.FC<NavLogoProps> = props => {
-    if (!props.publisher) {
-        return <span />;
-    }
     return (
         <Link to={`publisher/${props.publisher._id}`}>
             <div className="logo">

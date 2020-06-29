@@ -9,7 +9,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import { RootState } from '../../redux';
 import { savePublisher } from '../../redux/user/actions';
-import { RouteParams } from '../../router/constants';
+import { pageNames, RouteParams } from '../../router/constants';
 import animate from './animation';
 
 interface OwnProps {}
@@ -41,15 +41,21 @@ class Index extends Component<IndexProps> {
     }
 
     render(): JSX.Element {
-        const currentUrl = this.props.match.url;
-
+        let currentUrl = this.props.match.url;
+        // removing trailing slash if there is one
+        if (currentUrl.charAt(currentUrl.length - 1) === '/') {
+            currentUrl = currentUrl.substring(0, currentUrl.length - 1);
+        }
         return (
             <div className="home">
                 {' '}
                 <canvas id="sakura" />
                 <div className="content">
                     <div className="home-header">
-                        <Link className="link" to={`${currentUrl}/home`}>
+                        <Link
+                            className="link"
+                            to={`${currentUrl}/${pageNames.HOME}`}
+                        >
                             <img
                                 className="avatar"
                                 src={this.props.publisher.avatar}
@@ -58,7 +64,10 @@ class Index extends Component<IndexProps> {
                     </div>
                     <div className="home-body">
                         <div className="list">
-                            <Link className="link" to={`${currentUrl}/articles`}>
+                            <Link
+                                className="link"
+                                to={`${currentUrl}/${pageNames.ARTICLE_LIST}`}
+                            >
                                 <Button icon="read" type="primary">
                                     文章
                                 </Button>

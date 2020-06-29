@@ -11,6 +11,10 @@ export const pageNames = {
     ABOUT: 'about',
 };
 
+export const paramNames = {
+    CATEGORY_ID: 'categoryId',
+};
+
 export type PageName =
     | typeof pageNames.HOME
     | typeof pageNames.ARTICLE_LIST

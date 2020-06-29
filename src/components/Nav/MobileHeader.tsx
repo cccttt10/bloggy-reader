@@ -10,7 +10,7 @@ const { Header } = Layout;
 
 interface HeaderProps {
     activePage: PageName;
-    publisher: IUser | undefined;
+    publisher: IUser;
     setShowDrawer: (showDrawer: boolean) => void;
 }
 

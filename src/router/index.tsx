@@ -2,8 +2,9 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import Home from '../components/Home/';
+import BaseLayout from '../layout/BaseLayout';
 import PublisherLayout from '../layout/PublisherLayout';
-import { paths, RouteParams } from './constants';
+import { pageNames, paths, RouteParams } from './constants';
 
 const routers = [
     {
@@ -21,11 +22,29 @@ const routers = [
         path: `/${paths.PUBLISHER}/:${paths.PUBLISHER_ID}/:${paths.PAGE}`,
         exact: true,
         render: (routeProps: RouteComponentProps<RouteParams>): JSX.Element => {
-            return (
-                <PublisherLayout {...routeProps}>
-                    <Home {...routeProps} />
-                </PublisherLayout>
-            );
+            console.log('before switch');
+            console.log(routeProps.match.params.page);
+            switch (routeProps.match.params.page) {
+                case pageNames.HOME:
+                    return (
+                        <PublisherLayout {...routeProps}>
+                            <Home {...routeProps} />
+                        </PublisherLayout>
+                    );
+                case pageNames.ARTICLE_LIST:
+                    console.log('HERE');
+                    return (
+                        <PublisherLayout {...routeProps}>
+                            <BaseLayout {...routeProps} />
+                        </PublisherLayout>
+                    );
+                default:
+                    return (
+                        <PublisherLayout {...routeProps}>
+                            <Home {...routeProps} />
+                        </PublisherLayout>
+                    );
+            }
         },
     },
 ];

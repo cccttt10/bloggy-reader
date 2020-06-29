@@ -20,11 +20,11 @@ interface DispatchProps {}
 
 interface StateProps {
     reader: IUser | undefined;
-    publisher: IUser | undefined;
+    publisher: IUser;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-    publisher: state.user.publisher,
+    publisher: state.user.publisher as IUser,
     reader: state.user.reader,
 });
 

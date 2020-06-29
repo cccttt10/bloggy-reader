@@ -16,7 +16,7 @@ const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 interface DesktopHeaderProps {
-    publisher: IUser | undefined;
+    publisher: IUser;
     reader: IUser | undefined;
     setShowLogin: (showLogin: boolean) => void;
     setShowRegister: (showRegister: boolean) => void;
