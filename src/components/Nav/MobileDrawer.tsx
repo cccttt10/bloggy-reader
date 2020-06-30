@@ -70,7 +70,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = props => {
             placement="top"
             closable={false}
             onClose={(): void => props.setShowDrawer(false)}
-            visible={false}
+            visible={true}
             height={420}
         >
             <div className="drawer">{navItemsJSX}</div>
