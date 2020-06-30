@@ -1,7 +1,8 @@
+import { isMobile } from '../../util/responsive';
 import { IsMobileAction, isMobileActionTypes, IsMobileState } from './types';
 
 const initialState: IsMobileState = {
-    isMobile: false,
+    isMobile: isMobile(),
 };
 
 export default (
