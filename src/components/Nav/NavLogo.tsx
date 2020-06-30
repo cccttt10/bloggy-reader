@@ -10,7 +10,7 @@ interface NavLogoProps {
 
 const NavLogo: React.FC<NavLogoProps> = props => {
     return (
-        <Link to={`publisher/${props.publisher._id}`}>
+        <Link to={`/publisher/${props.publisher._id}`}>
             <div className="logo">
                 <img src={props.publisher.avatar} alt="nav-avatar" />
             </div>
