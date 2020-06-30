@@ -42,6 +42,7 @@ const errorHandler = (error: {
             description: 'Your Internet has a problem. Cannot connect to the server',
             message: 'Network error',
         });
+        store.dispatch(setLoading(false));
     }
     return response;
 };

@@ -21,9 +21,12 @@ export function getWindowHeight(): number {
 }
 
 export function isMobile(): boolean {
+    const threshold = 1240; // screens with width < 1240 px are considered small screens
+    if (window.innerWidth < threshold) {
+        return true;
+    }
     if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }

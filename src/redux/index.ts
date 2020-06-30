@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import articleListReducer from './articleList/reducer';
 import categoryListReducer from './categoryList/reducer';
+import isMobileReducer from './isMobile/reducer';
 import loadingReducer from './loading/reducer';
 import userReducer from './user/reducer';
 
@@ -14,6 +15,7 @@ const createRootReducer = (history: ReturnType<typeof createBrowserHistory>) =>
     combineReducers({
         articleList: articleListReducer,
         categoryList: categoryListReducer,
+        isMobile: isMobileReducer,
         loading: loadingReducer,
         user: userReducer,
         router: connectRouter(history),

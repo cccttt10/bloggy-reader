@@ -53,11 +53,11 @@ class Login extends Component<LoginProps, LoginState> {
             '^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$'
         );
         if (!this.state.email) {
-            message.warn('Please enter your email.');
+            message.error('Please enter your email.');
         } else if (!emailReg.test(this.state.email)) {
-            message.warn('Invalid email.');
+            message.error('Invalid email.');
         } else if (!this.state.password) {
-            message.warn('Please enter your password.');
+            message.error('Please enter your password.');
         } else {
             this.login();
         }

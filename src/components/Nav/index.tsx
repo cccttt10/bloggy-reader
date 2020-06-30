@@ -7,7 +7,6 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import { RootState } from '../../redux';
 import { PageName, RouteParams } from '../../router/constants';
-import { isMobile } from '../../util/responsive';
 import DesktopHeader from './DesktopHeader';
 import LoginModal from './LoginModal';
 import MobileDrawer from './MobileDrawer';
@@ -21,11 +20,13 @@ interface DispatchProps {}
 interface StateProps {
     reader: IUser | undefined;
     publisher: IUser;
+    isMobile: boolean;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
     publisher: state.user.publisher as IUser,
     reader: state.user.reader,
+    isMobile: state.isMobile.isMobile,
 });
 
 type NavProps = OwnProps &
@@ -34,7 +35,6 @@ type NavProps = OwnProps &
     RouteComponentProps<RouteParams>;
 
 interface NavState {
-    mobileView: boolean;
     showLogin: boolean;
     showRegister: boolean;
     activePage: PageName;
@@ -43,7 +43,6 @@ interface NavState {
 
 class Nav extends Component<NavProps, NavState> {
     state = {
-        mobileView: isMobile(),
         showLogin: false,
         showRegister: false,
         activePage: this.props.match.params.page,
@@ -59,7 +58,7 @@ class Nav extends Component<NavProps, NavState> {
 
     render(): JSX.Element {
         let header: JSX.Element;
-        if (this.state.mobileView === true) {
+        if (this.props.isMobile === true) {
             header = (
                 <MobileHeader
                     activePage={this.state.activePage}

@@ -8,21 +8,39 @@ import './mobile.less';
 
 import { BackTop, Layout } from 'antd';
 import React from 'react';
+import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 
 import Nav from '../components/Nav/';
 import ProfileCard from '../components/ProfileCard/';
+import { RootState } from '../redux';
 import { pageNames, RouteParams } from '../router/constants';
-import { isMobile } from '../util/responsive';
 const { Content, Footer, Sider } = Layout;
 
-const BaseLayout: React.FC<RouteComponentProps<RouteParams>> = props => {
+interface OwnProps {}
+
+interface DispatchProps {}
+
+interface StateProps {
+    isMobile: boolean;
+}
+
+const mapStateToProps = (state: RootState): StateProps => ({
+    isMobile: state.isMobile.isMobile,
+});
+
+type BaseLayoutProps = OwnProps &
+    DispatchProps &
+    StateProps &
+    RouteComponentProps<RouteParams>;
+
+const BaseLayout: React.FC<BaseLayoutProps> = props => {
     let showProfileCard = false;
     const pageName = props.match.params.page;
     if (
         pageName !== pageNames.ARTICLE_DETAIL &&
         pageName !== pageNames.ABOUT &&
-        !isMobile()
+        !props.isMobile
     ) {
         showProfileCard = true;
     }
@@ -57,4 +75,6 @@ const BaseLayout: React.FC<RouteComponentProps<RouteParams>> = props => {
     );
 };
 
-export default BaseLayout;
+export default connect<StateProps, DispatchProps, OwnProps, RootState>(
+    mapStateToProps
+)(BaseLayout);

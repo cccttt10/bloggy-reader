@@ -61,19 +61,19 @@ class Register extends Component<RegisterProps, RegisterState> {
         );
         const phoneReg = /^\d+/;
         if (!this.state.email) {
-            message.warn('Please enter your email.');
+            message.error('Please enter your email.');
         } else if (!emailReg.test(this.state.email)) {
-            message.warn('Invalid email.');
+            message.error('Invalid email.');
         } else if (!this.state.name) {
-            message.warn('Please enter your name.');
+            message.error('Please enter your name.');
         } else if (!this.state.password) {
-            message.warn('Please enter your password.');
+            message.error('Please enter your password.');
         } else if (!this.state.confirmPassword) {
-            message.warn('Please confirm your password.');
+            message.error('Please confirm your password.');
         } else if (this.state.password !== this.state.confirmPassword) {
-            message.warn(`Your passwords don't match.`);
+            message.error(`Your passwords don't match.`);
         } else if (this.state.phone && !phoneReg.test(this.state.phone)) {
-            message.warn('Invalid phone number.');
+            message.error('Invalid phone number.');
         } else {
             this.register();
         }
