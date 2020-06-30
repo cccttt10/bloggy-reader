@@ -1,5 +1,7 @@
 # Bloggy Reader
 
+[![Build Status](https://travis-ci.com/chuntonggao/bloggy-reader.svg?branch=master)](https://travis-ci.com/chuntonggao/bloggy-reader)
+
 This repo contains the front-end code for Bloggy's reader UI.
 
 - [Project Overview](https://github.com/chuntonggao/bloggy.git)
