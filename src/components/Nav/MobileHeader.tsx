@@ -5,7 +5,7 @@ import { Col, Icon, Layout, Row } from 'antd';
 import { IUser } from 'global';
 import React from 'react';
 
-import { PageName } from '../../router/constants';
+import { PageName, pageNames } from '../../router/constants';
 import NavLogo from './NavLogo';
 const { Header } = Layout;
 
@@ -16,6 +16,12 @@ interface HeaderProps {
 }
 
 const MobileHeader: React.FC<HeaderProps> = props => {
+    let navTitle = '';
+    if (props.activePage === pageNames.ARTICLE_LIST) {
+        navTitle = 'Articles';
+    } else if (props.activePage === pageNames.ABOUT) {
+        navTitle = 'About';
+    }
     return (
         <Header
             className="header"
@@ -35,7 +41,7 @@ const MobileHeader: React.FC<HeaderProps> = props => {
                     <NavLogo publisher={props.publisher} />
                 </Col>
                 <Col style={{ textAlign: 'center', width: '50%', float: 'left' }}>
-                    <div className="nav-title"> {props.activePage} </div>
+                    <div className="nav-title"> {navTitle} </div>
                 </Col>
                 <Col style={{ textAlign: 'right', width: '25%', float: 'left' }}>
                     <div>
