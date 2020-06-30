@@ -1,4 +1,4 @@
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter, RouterState } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -17,10 +17,12 @@ interface DispatchProps {}
 
 interface StateProps {
     loading: boolean;
+    router: RouterState<unknown>;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
     loading: state.loading.loading,
+    router: state.router,
 });
 
 type AppProps = OwnProps & DispatchProps & StateProps;
@@ -28,11 +30,9 @@ type AppProps = OwnProps & DispatchProps & StateProps;
 const App: React.FC<AppProps> = props => {
     return (
         <ConnectedRouter history={props.history}>
-            <Switch>
-                {/* <Layout> */}
-
-                <AuthLayout>
-                    <LoadingLayout>
+            <AuthLayout>
+                <LoadingLayout>
+                    <Switch>
                         {routers.map((r, key) => (
                             <Route
                                 render={r.render}
@@ -41,11 +41,9 @@ const App: React.FC<AppProps> = props => {
                                 path={r.path}
                             />
                         ))}
-                    </LoadingLayout>
-                </AuthLayout>
-
-                {/* </Layout> */}
-            </Switch>
+                    </Switch>
+                </LoadingLayout>
+            </AuthLayout>
         </ConnectedRouter>
     );
 };
