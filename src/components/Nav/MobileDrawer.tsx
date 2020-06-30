@@ -21,7 +21,8 @@ const MobileDrawer: React.FC<MobileDrawerProps> = props => {
         return (
             <p key={navItem.key} onClick={(): void => props.setShowDrawer(false)}>
                 <Link to={navItem.to}>
-                    <Icon type={navItem.icon}>{navItem.displayName}</Icon>
+                    <Icon type={navItem.icon}></Icon>
+                    {` ${navItem.displayName}`}
                 </Link>
             </p>
         );
@@ -73,8 +74,9 @@ const MobileDrawer: React.FC<MobileDrawerProps> = props => {
             visible={true}
             height={420}
         >
-            <div className="drawer">{navItemsJSX}</div>
-            {userOperation}
+            <div className="drawer">
+                {navItemsJSX} {userOperation}
+            </div>
         </Drawer>
     );
 };
