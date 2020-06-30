@@ -5,6 +5,8 @@ import { extend } from 'umi-request';
 import { store } from '../redux';
 import { setLoading } from '../redux/loading/actions';
 
+const baseUrl = process.env.REACT_APP_API_URL;
+
 const codeMessage: { [code: number]: string } = {
     200: 'The request has succeeded and the server has returned requested data.',
     201: 'The request has succeeded and a resource has been created or modified as a result.',
@@ -54,9 +56,16 @@ const service = extend({
 });
 
 service.use(async (context, next) => {
-    store.dispatch(setLoading(true));
-    await next();
-    store.dispatch(setLoading(false));
+    if (
+        context.req.url === `${baseUrl}/login` ||
+        context.req.url === `${baseUrl}/register`
+    ) {
+        await next();
+    } else {
+        store.dispatch(setLoading(true));
+        await next();
+        store.dispatch(setLoading(false));
+    }
 });
 
 export default service;

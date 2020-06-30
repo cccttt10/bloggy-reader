@@ -21,30 +21,35 @@ const mapDispatchToProps = {
 
 interface StateProps {
     reader: IUser;
-    loading: boolean;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
     reader: state.user.reader as IUser,
-    loading: state.loading.loading,
 });
 
 type LoginProps = OwnProps & DispatchProps & StateProps;
 
-type LoginState = LoginRequestBody;
+type LoginState = LoginRequestBody & {
+    loading: boolean;
+};
 
 class Login extends Component<LoginProps, LoginState> {
     state = {
         email: '',
         password: '',
+        loading: false,
     };
 
     login = async (): Promise<void> => {
+        this.setState({ loading: true });
         const response = await login(this.state);
+        this.setState({ loading: false });
         if (response.data) {
             const responseBody: LoginResponseBody = response.data;
             const readerInfo = responseBody.user;
             this.props.saveReader(readerInfo);
+            this.props.setShowLogin(false);
+            message.success('Login successful.');
         }
     };
 
@@ -108,6 +113,7 @@ class Login extends Component<LoginProps, LoginState> {
                         style={{ width: '100%', marginBottom: '20px' }}
                         type="primary"
                         onClick={this.handleSubmit}
+                        loading={this.state.loading}
                     >
                         Login
                     </Button>

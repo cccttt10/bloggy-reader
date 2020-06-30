@@ -25,17 +25,17 @@ const mapDispatchToProps = {
 
 interface StateProps {
     reader: IUser;
-    loading: boolean;
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
     reader: state.user.reader as IUser,
-    loading: state.loading.loading,
 });
 
 type RegisterProps = OwnProps & DispatchProps & StateProps;
 
-type RegisterState = RegisterRequestBody;
+type RegisterState = RegisterRequestBody & {
+    loading: boolean;
+};
 
 class Register extends Component<RegisterProps, RegisterState> {
     state = {
@@ -44,14 +44,19 @@ class Register extends Component<RegisterProps, RegisterState> {
         confirmPassword: '',
         name: '',
         phone: '',
+        loading: false,
     };
 
     register = async (): Promise<void> => {
+        this.setState({ loading: true });
         const response = await register(this.state);
+        this.setState({ loading: false });
         if (response.data) {
             const responseBody: RegisterResponseBody = response.data;
             const readerInfo = responseBody.user;
             this.props.saveReader(readerInfo);
+            this.props.setShowRegister(false);
+            message.success('Registration successful.');
         }
     };
 
@@ -59,7 +64,7 @@ class Register extends Component<RegisterProps, RegisterState> {
         const emailReg = new RegExp(
             '^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$'
         );
-        const phoneReg = /^\d+/;
+        const phoneReg = /^\d+$/;
         if (!this.state.email) {
             message.error('Please enter your email.');
         } else if (!emailReg.test(this.state.email)) {
@@ -165,6 +170,7 @@ class Register extends Component<RegisterProps, RegisterState> {
                         style={{ width: '100%', marginBottom: '20px' }}
                         type="primary"
                         onClick={this.handleSubmit}
+                        loading={this.state.loading}
                     >
                         Register
                     </Button>

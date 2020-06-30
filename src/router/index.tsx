@@ -22,8 +22,6 @@ const routers = [
         path: `/${paths.PUBLISHER}/:${paths.PUBLISHER_ID}/:${paths.PAGE}`,
         exact: true,
         render: (routeProps: RouteComponentProps<RouteParams>): JSX.Element => {
-            console.log('before switch');
-            console.log(routeProps.match.params.page);
             switch (routeProps.match.params.page) {
                 case pageNames.HOME:
                     return (
@@ -32,7 +30,6 @@ const routers = [
                         </PublisherLayout>
                     );
                 case pageNames.ARTICLE_LIST:
-                    console.log('HERE');
                     return (
                         <PublisherLayout {...routeProps}>
                             <BaseLayout {...routeProps} />
