@@ -1,6 +1,6 @@
 # Bloggy Reader
 
-[![Build Status](https://travis-ci.com/chuntonggao/bloggy-reader.svg?branch=master)](https://travis-ci.com/chuntonggao/bloggy-reader)
+[![Build Status](https://travis-ci.com/chuntonggao/bloggy-reader.svg?branch=master)](https://travis-ci.com/chuntonggao/bloggy-reader) [![Netlify Status](https://api.netlify.com/api/v1/badges/e923a337-4540-4082-ab3d-5dff7f2b70d7/deploy-status)](https://app.netlify.com/sites/bloggy-reader/deploys)
 
 This repo contains the front-end code for Bloggy's reader UI.
 
