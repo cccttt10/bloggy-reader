@@ -113,7 +113,7 @@ const DeskTopHeader: React.FC<DesktopHeaderProps> = props => {
                             </Button>
                             <Button
                                 type="primary"
-                                icon="logout"
+                                icon="user"
                                 style={{ marginRight: '15px' }}
                                 onClick={(): void => props.setShowRegister(true)}
                             >
