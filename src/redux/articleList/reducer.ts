@@ -19,7 +19,7 @@ export default (
             }
             return {
                 ...state,
-                articles: [...state.articles, ...action.payload.articles],
+                articles: action.payload.articles,
             };
         default:
             return state;

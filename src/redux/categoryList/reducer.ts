@@ -19,7 +19,7 @@ export default (
             }
             return {
                 ...state,
-                categories: [...state.categories, ...action.payload.categories],
+                categories: action.payload.categories,
             };
         default:
             return state;
