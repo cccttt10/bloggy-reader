@@ -46,6 +46,13 @@ class Index extends Component<IndexProps> {
         if (currentUrl.charAt(currentUrl.length - 1) === '/') {
             currentUrl = currentUrl.substring(0, currentUrl.length - 1);
         }
+        // if url is http://localhost:2000/publisher/5efa881981efba83dd711f09/home, for example,
+        // change it to http://localhost:2000/publisher/5efa881981efba83dd711f09
+        // so that we can append a different page name
+        const index = currentUrl.length - pageNames.HOME.length;
+        if (currentUrl.substring(index, currentUrl.length) === pageNames.HOME) {
+            currentUrl = currentUrl.substring(0, index - 1);
+        }
         return (
             <div className="home">
                 {' '}
