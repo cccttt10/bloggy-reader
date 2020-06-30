@@ -7,13 +7,14 @@ you should wrap PublisherLayout as an HOC outside of that component.
 
 import { ICategory, IUser } from 'global';
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 
 import { RootState } from '../redux';
 import { saveCategoryList } from '../redux/categoryList/actions';
 import { savePublisher } from '../redux/user/actions';
-import { RouteParams } from '../router/constants';
+import { pageNames, RouteParams } from '../router/constants';
 import { getCategoryList, GetCategoryListResponseBody } from '../service/category';
 import { getUser, GetUserResponseBody } from '../service/user';
 
@@ -84,9 +85,30 @@ class PublisherLayout extends Component<PublisherLayoutProps, PublisherLayoutSta
 
     render(): React.ReactNode {
         if (this.state.ready) {
-            return this.props.children;
+            const pageName = this.props.match.params.page;
+            let pageTitle = this.props.publisher ? this.props.publisher.name : '';
+            if (pageName === pageNames.ARTICLE_LIST) {
+                pageTitle += ' - Articles';
+            } else if (pageName === pageNames.ABOUT) {
+                pageTitle += ' - About';
+            }
+            return (
+                <React.Fragment>
+                    <Helmet>
+                        <title>{pageTitle}</title>
+                    </Helmet>
+                    {this.props.children}
+                </React.Fragment>
+            );
         } else {
-            return <span />;
+            return (
+                <React.Fragment>
+                    <Helmet>
+                        <title>Bloggy Reader</title>
+                    </Helmet>
+                    <span />;
+                </React.Fragment>
+            );
         }
     }
 }
