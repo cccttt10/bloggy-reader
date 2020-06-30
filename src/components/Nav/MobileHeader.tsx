@@ -1,4 +1,5 @@
 import './index.less';
+import './index.less';
 
 import { Col, Icon, Layout, Row } from 'antd';
 import { IUser } from 'global';
