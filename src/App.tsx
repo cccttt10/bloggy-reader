@@ -1,5 +1,6 @@
 import { ConnectedRouter, RouterState } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
+import cookieChecker from 'js-cookie';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
@@ -45,6 +46,8 @@ class App extends Component<AppProps> {
         window.removeEventListener('resize', this.resize);
     }
     render(): JSX.Element {
+        console.log('cookies: ');
+        console.log(cookieChecker.get());
         return (
             <ConnectedRouter history={this.props.history}>
                 <AuthLayout>
