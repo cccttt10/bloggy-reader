@@ -34,6 +34,7 @@ const mapDispatchToProps = {
 
 interface StateProps {
     articleList: VerboseArticle[];
+    categoryList: ICategory[];
     count: number;
     publisher: IUser;
     loading: boolean;
@@ -41,6 +42,7 @@ interface StateProps {
 
 const mapStateToProps = (state: RootState): StateProps => ({
     articleList: state.articleList.articles as VerboseArticle[],
+    categoryList: state.categoryList.categories as ICategory[],
     count: state.articleList.count,
     publisher: state.user.publisher as IUser,
     loading: state.loading.loading,
@@ -115,6 +117,29 @@ class ArticleList extends Component<ArticleListProps, ArticleListState> {
 
     componentWillUnmount(): void {
         window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars, react/no-deprecated
+    componentWillReceiveProps(nextProps: ArticleListProps): void {
+        const newCategoryId: ICategory['_id'] | null = getQueryStringByName(
+            paramNames.CATEGORY_ID
+        );
+        if (newCategoryId !== this.state.categoryId) {
+            let allArticles: VerboseArticle[];
+            if (newCategoryId === null) {
+                allArticles = this.props.articleList;
+            } else {
+                allArticles = this.filterArticles(newCategoryId);
+            }
+            this.setState({
+                ...this.state,
+                page: 0,
+                categoryId: newCategoryId,
+                allArticles,
+                articlesToRender: allArticles.slice(0, 5),
+                endOfList: allArticles.length > 5,
+            });
+        }
     }
 
     handleScroll = (): void => {
@@ -209,11 +234,16 @@ class ArticleList extends Component<ArticleListProps, ArticleListState> {
             )
         );
 
+        const category = this.props.categoryList.find(
+            category => category._id === this.state.categoryId
+        );
+        const categoryName = category ? category.name : '';
+
         return (
             <div className="left">
                 {this.state.categoryId ? (
                     <h3 className="left-title">
-                        Articles related to {this.state.categoryId}:{' '}
+                        Articles related to {categoryName}:{' '}
                     </h3>
                 ) : (
                     ''
