@@ -99,7 +99,7 @@ class ArticleList extends Component<ArticleListProps, ArticleListState> {
             categoryId,
             allArticles,
             articlesToRender: allArticles.slice(0, 5),
-            endOfList: allArticles.length > 5,
+            endOfList: !(allArticles.length > 5),
         };
     }
 
@@ -159,11 +159,11 @@ class ArticleList extends Component<ArticleListProps, ArticleListState> {
         const limit = 5;
         const page = this.state.page + 1;
         const skip = page * limit;
-        const articlesToRender = this.state.allArticles.slice(skip, skip + limit);
+        const articlesToRender = this.state.allArticles.slice(0, skip + limit);
         this.setState({
             ...this.state,
             articlesToRender,
-            endOfList: articlesToRender.length < this.state.allArticles.length,
+            endOfList: !(articlesToRender.length < this.state.allArticles.length),
         });
         lazyLoad();
     };

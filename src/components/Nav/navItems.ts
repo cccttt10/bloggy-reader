@@ -9,19 +9,19 @@ const navItems: {
     {
         displayName: 'Home',
         icon: 'home',
-        key: 'home',
+        key: pageNames.HOME,
         to: pageNames.HOME,
     },
     {
         displayName: 'Articles',
         icon: 'ordered-list',
-        key: 'articles',
+        key: pageNames.ARTICLE_LIST,
         to: pageNames.ARTICLE_LIST,
     },
     {
         displayName: 'About',
         icon: 'user',
-        key: 'about',
+        key: pageNames.ABOUT,
         to: pageNames.ABOUT,
     },
 ];
