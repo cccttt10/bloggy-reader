@@ -14,13 +14,8 @@ export default (
 ): CategoryListState => {
     switch (action.type) {
         case categoryListActionTypes.SAVE_CATEGORY_LIST:
-            if (state.categories === undefined) {
-                return { ...state, categories: action.payload.categories };
-            }
-            return {
-                ...state,
-                categories: action.payload.categories,
-            };
+            return { ...state, categories: action.payload.categories };
+
         default:
             return state;
     }

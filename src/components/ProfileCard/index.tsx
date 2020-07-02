@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 import { RootState } from '../../redux';
-import { pageNames, paramNames, RouteParams } from '../../router/constants';
+import { pageNames, paramNames, paths, RouteParams } from '../../router/constants';
 
 interface OwnProps {}
 
@@ -29,13 +29,13 @@ type ProfileCardProps = OwnProps &
     RouteComponentProps<RouteParams>;
 
 const ProfileCard: React.FC<ProfileCardProps> = props => {
-    const currentUrl = props.match.url;
+    const publisherId = props.match.params.publisherId;
     const categoryTags: JSX.Element[] = props.categoryList.map(category => {
         return (
             <Link
                 className="item"
                 key={category._id}
-                to={`${currentUrl}/${pageNames.ARTICLE_LIST}?${paramNames.CATEGORY_ID}=${category._id}`}
+                to={`/${paths.PUBLISHER}/${publisherId}/${pageNames.ARTICLE_LIST}?${paramNames.CATEGORY_ID}=${category._id}`}
             >
                 <span>{category.name}</span>
             </Link>

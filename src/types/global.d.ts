@@ -21,6 +21,12 @@ declare module 'global' {
         updatedOn?: Date;
     }
 
+    export interface VerboseArticle
+        extends Omit<Omit<IArticle, 'categories'>, 'comments'> {
+        comments: IComment[];
+        categories: ICategory[];
+    }
+
     export interface ICategory {
         _id: string;
         name: string;

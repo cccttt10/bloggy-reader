@@ -12,6 +12,7 @@ export const pageNames = {
 };
 
 export const paramNames = {
+    ARTICLE_ID: 'articleId',
     CATEGORY_ID: 'categoryId',
 };
 

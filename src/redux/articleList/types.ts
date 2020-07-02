@@ -1,7 +1,8 @@
-import { IArticle } from 'global';
+import { VerboseArticle } from 'global';
 
 export interface ArticleListState {
-    articles: IArticle[] | undefined;
+    articles: VerboseArticle[] | undefined; // articles fetched so far
+    count: number; // total count of articles
 }
 
 export const articleListActionTypes = {
@@ -11,7 +12,8 @@ export const articleListActionTypes = {
 export interface SaveArticleListAction {
     type: typeof articleListActionTypes.SAVE_ARTICLE_LIST;
     payload: {
-        articles: IArticle[];
+        articles: VerboseArticle[];
+        count: number;
     };
 }
 

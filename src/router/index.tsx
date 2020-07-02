@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
+import ArticleList from '../components/ArticleList';
 import Home from '../components/Home/';
 import BaseLayout from '../layout/BaseLayout';
 import PublisherLayout from '../layout/PublisherLayout';
@@ -32,7 +33,9 @@ const routers = [
                 case pageNames.ARTICLE_LIST:
                     return (
                         <PublisherLayout {...routeProps}>
-                            <BaseLayout {...routeProps} />
+                            <BaseLayout {...routeProps}>
+                                <ArticleList {...routeProps} />
+                            </BaseLayout>
                         </PublisherLayout>
                     );
                 default:

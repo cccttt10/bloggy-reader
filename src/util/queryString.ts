@@ -18,12 +18,12 @@ export function getQueryString(): '' | RegExpMatchArray {
  * @param {string} name - a query string's name
  * @return a query string according to name
  */
-export function getQueryStringByName(name: string): string {
+export function getQueryStringByName(name: string): string | null {
     const result = window.location.search.match(
         new RegExp('[?&]' + name + '=([^&]+)', 'i')
     );
     if (result === null || result.length < 1) {
-        return '';
+        return null;
     }
     return result[1];
 }

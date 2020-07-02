@@ -6,6 +6,7 @@ import {
 
 const initialState: ArticleListState = {
     articles: undefined,
+    count: 0,
 };
 
 export default (
@@ -14,13 +15,12 @@ export default (
 ): ArticleListState => {
     switch (action.type) {
         case articleListActionTypes.SAVE_ARTICLE_LIST:
-            if (state.articles === undefined) {
-                return { ...state, articles: action.payload.articles };
-            }
             return {
                 ...state,
                 articles: action.payload.articles,
+                count: action.payload.count,
             };
+
         default:
             return state;
     }
