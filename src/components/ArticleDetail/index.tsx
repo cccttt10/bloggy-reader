@@ -10,10 +10,10 @@ import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 
 import { RootState } from '../../redux';
-import { paramNames, RouteParams } from '../../router/constants';
+import { paramNames, paths, RouteParams } from '../../router/constants';
 import {
     getArticle,
-    GetArticleListResponseBody,
+    GetArticleResponseBody,
     likeArticle,
 } from '../../service/article';
 import { getCommentList, GetCommentListResponseBody } from '../../service/comment';
@@ -24,7 +24,9 @@ import Loading from '../Loading';
 import CommentList from './Comment/CommentList';
 import NewComment from './Comment/NewComment';
 
-interface OwnProps {}
+interface OwnProps {
+    isAboutPage?: boolean;
+}
 
 interface DispatchProps {}
 
@@ -32,12 +34,14 @@ interface StateProps {
     publisher: IUser;
     reader: IUser | undefined;
     isMobile: boolean;
+    articleList: VerboseArticle[];
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
     publisher: state.user.publisher as IUser,
     reader: state.user.reader,
     isMobile: state.isMobile.isMobile,
+    articleList: state.articleList.articles as VerboseArticle[],
 });
 
 type ArticleDetailProps = OwnProps &
@@ -57,18 +61,39 @@ interface ArticleDetailState {
 }
 
 class ArticleDetail extends Component<ArticleDetailProps, ArticleDetailState> {
-    state = {
-        articleId: getQueryStringByName(paramNames.ARTICLE_ID) as string,
-        article: undefined,
-        comments: undefined,
-        loadingComments: true,
-        loadingArticle: true,
-        likeLoading: false,
-    };
+    constructor(props: ArticleDetailProps) {
+        super(props);
+        let articleId = '';
+        if (this.props.isAboutPage) {
+            const filteredList = this.props.articleList.filter(
+                article => article.isAboutPage
+            );
+            if (filteredList.length === 0) {
+                notification.warn({ message: 'About page is under construction.' });
+                this.props.history.push(
+                    `/${paths.PUBLISHER}/${this.props.publisher._id}`
+                );
+            } else {
+                articleId = filteredList[0]._id;
+            }
+        } else {
+            articleId = getQueryStringByName(paramNames.ARTICLE_ID) as string;
+        }
+        this.state = {
+            articleId,
+            article: undefined,
+            comments: undefined,
+            loadingComments: true,
+            loadingArticle: true,
+            likeLoading: false,
+        };
+    }
 
     componentDidMount(): void {
-        this.fetchArticle();
-        this.fetchComments();
+        if (this.state.articleId !== '') {
+            this.fetchArticle();
+            this.fetchComments();
+        }
     }
 
     fetchArticle = async (): Promise<void> => {
@@ -77,8 +102,7 @@ class ArticleDetail extends Component<ArticleDetailProps, ArticleDetailState> {
             isVisitor: true,
         });
         if (response.data) {
-            // this.setState({ ...this.state, markdownProcessing: true });
-            const responseBody: GetArticleListResponseBody = response.data;
+            const responseBody: GetArticleResponseBody = response.data;
             const article: VerboseMarkdownArticle = {
                 ...responseBody.article,
                 toc: '',

@@ -39,13 +39,13 @@ export interface GetArticleRequestBody {
     isVisitor: true;
 }
 
-export interface GetArticleListResponseBody {
+export interface GetArticleResponseBody {
     article: VerboseArticle;
 }
 
 export const getArticle = (
     requestBody: GetArticleRequestBody
-): Promise<RequestResponse<GetArticleListResponseBody>> => {
+): Promise<RequestResponse<GetArticleResponseBody>> => {
     return service(`${baseUrl}/getArticle`, {
         method: 'POST',
         data: requestBody,

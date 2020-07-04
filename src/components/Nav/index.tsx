@@ -56,6 +56,10 @@ class Nav extends Component<NavProps, NavState> {
     setShowRegister = (showRegister: boolean): void =>
         this.setState({ showRegister });
 
+    updateActivePage = (activePage: PageName): void => {
+        this.setState({ ...this.state, activePage, showDrawer: false });
+    };
+
     render(): JSX.Element {
         let header: JSX.Element;
         if (this.props.isMobile === true) {
@@ -74,6 +78,7 @@ class Nav extends Component<NavProps, NavState> {
                     setShowLogin={this.setShowLogin}
                     setShowRegister={this.setShowRegister}
                     activePage={this.state.activePage}
+                    updateActivePage={this.updateActivePage}
                 />
             );
         }
@@ -88,6 +93,7 @@ class Nav extends Component<NavProps, NavState> {
                         setShowDrawer={this.setShowDrawer}
                         setShowLogin={this.setShowLogin}
                         setShowRegister={this.setShowRegister}
+                        updateActivePage={this.updateActivePage}
                     />
                 )}
                 {this.state.showLogin && (

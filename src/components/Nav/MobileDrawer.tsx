@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import { store } from '../../redux';
 import { logoutReader } from '../../redux/user/actions';
-import { paths } from '../../router/constants';
+import { PageName, paths } from '../../router/constants';
 import navItems from './navItems';
 
 interface MobileDrawerProps {
@@ -16,12 +16,16 @@ interface MobileDrawerProps {
     setShowDrawer: (showDrawer: boolean) => void;
     setShowLogin: (showLogin: boolean) => void;
     setShowRegister: (showRegister: boolean) => void;
+    updateActivePage: (activePage: PageName) => void;
 }
 
 const MobileDrawer: React.FC<MobileDrawerProps> = props => {
     const navItemsJSX: JSX.Element[] = navItems.map(navItem => {
         return (
-            <p key={navItem.key} onClick={(): void => props.setShowDrawer(false)}>
+            <p
+                key={navItem.to}
+                onClick={(): void => props.updateActivePage(navItem.to)}
+            >
                 <Link
                     to={`/${paths.PUBLISHER}/${props.publisher._id}/${navItem.to}`}
                 >

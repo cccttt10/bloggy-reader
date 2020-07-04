@@ -47,6 +47,14 @@ const routers = [
                             </BaseLayout>
                         </PublisherLayout>
                     );
+                case pageNames.ABOUT:
+                    return (
+                        <PublisherLayout {...routeProps}>
+                            <BaseLayout {...routeProps}>
+                                <ArticleDetail isAboutPage={true} {...routeProps} />
+                            </BaseLayout>
+                        </PublisherLayout>
+                    );
                 default:
                     return (
                         <PublisherLayout {...routeProps}>

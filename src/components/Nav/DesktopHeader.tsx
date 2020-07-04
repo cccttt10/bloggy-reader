@@ -21,14 +21,16 @@ interface DesktopHeaderProps {
     setShowLogin: (showLogin: boolean) => void;
     setShowRegister: (showRegister: boolean) => void;
     activePage: PageName;
+    updateActivePage: (activePage: PageName) => void;
 }
 
 const DeskTopHeader: React.FC<DesktopHeaderProps> = props => {
     const navItemsJSX: JSX.Element[] = navItems.map(navItem => {
         return (
-            <Menu.Item key={navItem.key}>
+            <Menu.Item key={navItem.to}>
                 <Link
                     to={`/${paths.PUBLISHER}/${props.publisher._id}/${navItem.to}`}
+                    onClick={(): void => props.updateActivePage(navItem.to)}
                 >
                     <Icon type={navItem.icon} theme="outlined" />
                     {navItem.displayName}
