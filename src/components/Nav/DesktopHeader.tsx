@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import { store } from '../../redux/index';
 import { logoutReader } from '../../redux/user/actions';
-import { PageName } from '../../router/constants';
+import { PageName, paths } from '../../router/constants';
 import navItems from './navItems';
 import NavLogo from './NavLogo';
 
@@ -27,7 +27,9 @@ const DeskTopHeader: React.FC<DesktopHeaderProps> = props => {
     const navItemsJSX: JSX.Element[] = navItems.map(navItem => {
         return (
             <Menu.Item key={navItem.key}>
-                <Link to={navItem.to}>
+                <Link
+                    to={`/${paths.PUBLISHER}/${props.publisher._id}/${navItem.to}`}
+                >
                     <Icon type={navItem.icon} theme="outlined" />
                     {navItem.displayName}
                 </Link>

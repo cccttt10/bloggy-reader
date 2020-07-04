@@ -83,6 +83,7 @@ class Nav extends Component<NavProps, NavState> {
                 {header}
                 {this.state.showDrawer && (
                     <MobileDrawer
+                        publisher={this.props.publisher}
                         reader={this.props.reader}
                         setShowDrawer={this.setShowDrawer}
                         setShowLogin={this.setShowLogin}

@@ -21,8 +21,8 @@ import { formatTimeStamp } from '../../util/formatTimeStamp';
 import markdown from '../../util/markdown';
 import { getQueryStringByName } from '../../util/queryString';
 import Loading from '../Loading';
-import CommentList from './CommentList';
-import NewComment from './NewComment';
+import CommentList from './Comment/CommentList';
+import NewComment from './Comment/NewComment';
 
 interface OwnProps {}
 
@@ -179,25 +179,35 @@ class ArticleDetail extends Component<ArticleDetailProps, ArticleDetailState> {
                                                 : ''}
                                         </span>
                                         <span className="wordage">
-                                            {article.wordCount} Words
+                                            {' '}
+                                            {article.wordCount} Words{' '}
                                         </span>
                                         <span className="views-count">
-                                            Views{' '}
+                                            {' '}
+                                            <Icon type="eye" theme="outlined" />{' '}
                                             {article.meta
                                                 ? article.meta.numViews
-                                                : '-'}
+                                                : '-'}{' '}
                                         </span>
                                         <span className="comments-count">
-                                            Comments{' '}
+                                            {' '}
+                                            <Icon
+                                                type="message"
+                                                theme="outlined"
+                                            />{' '}
                                             {article.meta
                                                 ? article.meta.numComments
-                                                : '-'}
+                                                : '-'}{' '}
                                         </span>
                                         <span className="likes-count">
-                                            Likes{' '}
+                                            {' '}
+                                            <Icon
+                                                type="heart"
+                                                theme="outlined"
+                                            />{' '}
                                             {article.meta
                                                 ? article.meta.numLikes
-                                                : '-'}
+                                                : '-'}{' '}
                                         </span>
                                     </div>
                                 </div>

@@ -6,8 +6,8 @@ const { TextArea } = Input;
 import { IArticle, IUser } from 'global';
 import { connect } from 'react-redux';
 
-import { RootState } from '../../redux';
-import { createComment } from '../../service/comment';
+import { RootState } from '../../../redux';
+import { createComment } from '../../../service/comment';
 
 interface OwnProps {
     articleId: IArticle['_id'];

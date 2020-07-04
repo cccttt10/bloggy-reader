@@ -60,7 +60,8 @@ service.use(async (context, next) => {
         context.req.url === `${baseUrl}/login` ||
         context.req.url === `${baseUrl}/register` ||
         context.req.url === `${baseUrl}/getArticle` ||
-        context.req.url === `${baseUrl}/getCommentList`
+        context.req.url === `${baseUrl}/getCommentList` ||
+        context.req.url === `${baseUrl}/likeArticle`
     ) {
         await next();
     } else {

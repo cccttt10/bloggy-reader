@@ -5,7 +5,7 @@ import { VerboseComment } from 'global';
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { formatTimeStamp } from '../../util/formatTimeStamp';
+import { formatTimeStamp } from '../../../util/formatTimeStamp';
 
 interface CommentListProps {
     comments: VerboseComment[];
