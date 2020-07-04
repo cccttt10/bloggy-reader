@@ -33,3 +33,38 @@ export const getArticleList = (
         data: requestBody,
     });
 };
+
+export interface GetArticleRequestBody {
+    _id: IArticle['_id'];
+    isVisitor: true;
+}
+
+export interface GetArticleListResponseBody {
+    article: VerboseArticle;
+}
+
+export const getArticle = (
+    requestBody: GetArticleRequestBody
+): Promise<RequestResponse<GetArticleListResponseBody>> => {
+    return service(`${baseUrl}/getArticle`, {
+        method: 'POST',
+        data: requestBody,
+    });
+};
+
+export interface LikeArticleRequestBody {
+    _id: IArticle['_id'];
+}
+
+export interface LikeArticleListResponseBody {
+    article: VerboseArticle;
+}
+
+export const likeArticle = (
+    requestBody: LikeArticleRequestBody
+): Promise<RequestResponse<LikeArticleListResponseBody>> => {
+    return service(`${baseUrl}/likeArticle`, {
+        method: 'POST',
+        data: requestBody,
+    });
+};

@@ -58,7 +58,9 @@ const service = extend({
 service.use(async (context, next) => {
     if (
         context.req.url === `${baseUrl}/login` ||
-        context.req.url === `${baseUrl}/register`
+        context.req.url === `${baseUrl}/register` ||
+        context.req.url === `${baseUrl}/getArticle` ||
+        context.req.url === `${baseUrl}/getCommentList`
     ) {
         await next();
     } else {

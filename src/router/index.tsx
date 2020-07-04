@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
+import ArticleDetail from '../components/ArticleDetail';
 import ArticleList from '../components/ArticleList';
 import Home from '../components/Home/';
 import BaseLayout from '../layout/BaseLayout';
@@ -35,6 +36,14 @@ const routers = [
                         <PublisherLayout {...routeProps}>
                             <BaseLayout {...routeProps}>
                                 <ArticleList {...routeProps} />
+                            </BaseLayout>
+                        </PublisherLayout>
+                    );
+                case pageNames.ARTICLE_DETAIL:
+                    return (
+                        <PublisherLayout {...routeProps}>
+                            <BaseLayout {...routeProps}>
+                                <ArticleDetail {...routeProps} />
                             </BaseLayout>
                         </PublisherLayout>
                     );

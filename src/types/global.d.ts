@@ -22,9 +22,10 @@ declare module 'global' {
     }
 
     export interface VerboseArticle
-        extends Omit<Omit<IArticle, 'categories'>, 'comments'> {
+        extends Omit<Omit<Omit<IArticle, 'categories'>, 'comments'>, 'author'> {
         comments: IComment[];
         categories: ICategory[];
+        author: IUser;
     }
 
     export interface ICategory {
@@ -44,6 +45,10 @@ declare module 'global' {
         user: IUser['_id'] | IUser;
         isApproved?: boolean;
         createdOn?: Date;
+    }
+
+    export interface VerboseComment extends Omit<IComment, 'user'> {
+        user: IUser;
     }
 
     export interface IUser {
