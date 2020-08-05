@@ -5,6 +5,7 @@ import { VerboseComment } from 'global';
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+import constants from '../../../util/constants';
 import { formatTimeStamp } from '../../../util/formatTimeStamp';
 
 interface CommentListProps {
@@ -23,7 +24,16 @@ const CommentList: React.FC<CommentListProps> = props => {
         >
             <div className="item">
                 <div className="item-header">
-                    <div className="author">
+                    <div
+                        className="author"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() =>
+                            window.open(
+                                `${constants.BLOGGY_READER_BASE_URL}/${comment.user._id}`,
+                                '_blank'
+                            )
+                        }
+                    >
                         <div className="avator">
                             <Avatar
                                 size="large"
