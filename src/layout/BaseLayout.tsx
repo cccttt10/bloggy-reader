@@ -15,6 +15,7 @@ import Nav from '../components/Nav/';
 import ProfileCard from '../components/ProfileCard/';
 import { RootState } from '../redux';
 import { pageNames, RouteParams } from '../router/constants';
+import constants from '../util/constants';
 const { Content, Footer, Sider } = Layout;
 
 interface OwnProps {}
@@ -67,6 +68,10 @@ const BaseLayout: React.FC<BaseLayoutProps> = props => {
                     </Content>
                 </Layout>
                 <Footer style={{ textAlign: 'center', background: '#fff' }}>
+                    <a href={constants.BLOGGY_PUBLISHER_BASE_URL}>
+                        Bloggy Publisher
+                    </a>{' '}
+                    <br />
                     Bloggy ©2020 Created by Chuntong, Bolin, Max and Kerry
                 </Footer>
                 <BackTop />
