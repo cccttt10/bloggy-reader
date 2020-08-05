@@ -36,6 +36,10 @@ const ProfileCard: React.FC<ProfileCardProps> = props => {
                 className="item"
                 key={category._id}
                 to={`/${paths.PUBLISHER}/${publisherId}/${pageNames.ARTICLE_LIST}?${paramNames.CATEGORY_ID}=${category._id}`}
+                onClick={(): void => {
+                    window.location.href += `?${paramNames.CATEGORY_ID}=${category._id}`;
+                    window.location.reload();
+                }}
             >
                 <span>{category.name}</span>
             </Link>
