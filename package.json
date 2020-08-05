@@ -12,6 +12,7 @@
         ]
     },
     "dependencies": {
+        "@ant-design/icons": "^4.2.2",
         "antd": "^3.15.0",
         "axios": "^0.19.2",
         "connected-react-router": "^6.3.2",

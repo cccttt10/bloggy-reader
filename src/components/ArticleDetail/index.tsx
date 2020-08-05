@@ -2,6 +2,7 @@
 import './index.less';
 import './marked.css';
 
+import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { Avatar, Button, Icon, notification } from 'antd';
 import { IArticle, IUser, VerboseArticle, VerboseComment } from 'global';
 import React, { Component } from 'react';
@@ -167,6 +168,12 @@ class ArticleDetail extends Component<ArticleDetailProps, ArticleDetailState> {
                 {category.name}
             </span>
         ));
+        const alreadyLiked =
+            this.state.article &&
+            this.state.article.likedBy &&
+            this.props.reader &&
+            typeof this.props.reader._id === 'string' &&
+            this.state.article.likedBy.includes(this.props.reader._id);
         return (
             <React.Fragment>
                 <Helmet>
@@ -253,15 +260,27 @@ class ArticleDetail extends Component<ArticleDetailProps, ArticleDetailState> {
                             />
                         </div>
                         <div className="heart">
-                            <Button
-                                type="danger"
-                                size="large"
-                                icon="heart"
-                                loading={this.state.likeLoading}
-                                onClick={this.handleLike}
-                            >
-                                Like
-                            </Button>
+                            {alreadyLiked ? (
+                                <Button
+                                    type="danger"
+                                    size="large"
+                                    loading={this.state.likeLoading}
+                                    onClick={this.handleLike}
+                                >
+                                    <HeartFilled />
+                                    Liked
+                                </Button>
+                            ) : (
+                                <Button
+                                    type="danger"
+                                    size="large"
+                                    loading={this.state.likeLoading}
+                                    onClick={this.handleLike}
+                                >
+                                    <HeartOutlined />
+                                    Like
+                                </Button>
+                            )}
                         </div>
                         <NewComment articleId={article._id} />
                         <CommentList comments={comments} />

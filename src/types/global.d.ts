@@ -10,7 +10,7 @@ declare module 'global' {
         isDraft?: boolean;
         comments?: Array<IComment['_id']> | IComment[];
         categories?: Array<ICategory['_id']> | ICategory[];
-        likedBy?: Array<IUser['_id']> | IUser[];
+        likedBy?: Array<IUser['_id']>;
         meta?: {
             numViews: number;
             numLikes: number;
