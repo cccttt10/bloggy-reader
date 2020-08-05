@@ -53,7 +53,9 @@ class NewComment extends Component<NewCommentProps, NewCommentState> {
             content: this.state.content,
         });
         if (response.data) {
-            notification.success({ message: 'Comment posted.' });
+            notification.success({
+                message: 'Comment submitted. Will be posted after approval.',
+            });
         }
     };
 
