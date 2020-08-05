@@ -19,7 +19,7 @@ export function getQueryString(): '' | RegExpMatchArray {
  * @return a query string according to name
  */
 export function getQueryStringByName(name: string): string | null {
-    const result = window.location.search.match(
+    const result = window.location.hash.match(
         new RegExp('[?&]' + name + '=([^&]+)', 'i')
     );
     if (result === null || result.length < 1) {

@@ -74,9 +74,10 @@ class Index extends Component<IndexProps> {
                             <Link
                                 className="link"
                                 to={`${currentUrl}/${pageNames.ARTICLE_LIST}`}
+                                onClick={() => this.forceUpdate()}
                             >
                                 <Button icon="read" type="primary">
-                                    文章
+                                    Articles
                                 </Button>
                             </Link>
                             <a

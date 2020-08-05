@@ -1,9 +1,10 @@
-import { ConnectedRouter, RouterState } from 'connected-react-router';
+import { RouterState } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import cookieChecker from 'js-cookie';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
+import { HashRouter } from 'react-router-dom';
 import { throttle } from 'throttle-debounce';
 
 import AuthLayout from './layout/AuthLayout';
@@ -49,7 +50,7 @@ class App extends Component<AppProps> {
         console.log('cookies: ');
         console.log(cookieChecker.get());
         return (
-            <ConnectedRouter history={this.props.history}>
+            <HashRouter>
                 <AuthLayout>
                     <LoadingLayout>
                         <Switch>
@@ -64,7 +65,7 @@ class App extends Component<AppProps> {
                         </Switch>
                     </LoadingLayout>
                 </AuthLayout>
-            </ConnectedRouter>
+            </HashRouter>
         );
     }
 }
